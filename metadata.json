@@ -1,0 +1,5 @@
+{
+  "name": "GifAlchemy",
+  "description": "An AI-powered GIF editor that lets you recolor objects and remove backgrounds frame-by-frame using the Gemini API.",
+  "requestFramePermissions": []
+}
