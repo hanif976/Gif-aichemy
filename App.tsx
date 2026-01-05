@@ -14,8 +14,14 @@ function App() {
       const hasKey = await window.aistudio.hasSelectedApiKey();
       setIsApiKeySelected(hasKey);
     } else {
-      if (process.env.API_KEY) {
-        setIsApiKeySelected(true);
+      // Safety check for process.env to avoid crashes on Vercel/Client-side if not polyfilled
+      try {
+        if (typeof process !== 'undefined' && process.env && process.env.API_KEY) {
+          setIsApiKeySelected(true);
+        }
+      } catch (e) {
+        // Ignore reference errors
+        console.warn("process.env access failed", e);
       }
     }
   }
