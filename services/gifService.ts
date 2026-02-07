@@ -4,7 +4,9 @@ import { GifFrame } from '../types';
 import { CHROMA_KEY_RGB, MAX_WIDTH } from '../constants';
 
 // Worker script for gif.js
-const workerUrl = '/gif-processor.js';
+import gifWorkerScript from 'gif.js/dist/gif.worker.js?raw';
+const workerBlob = new Blob([gifWorkerScript], { type: 'application/javascript' });
+const workerUrl = URL.createObjectURL(workerBlob);
 
 /**
  * Converts an RGB color value to HSL.
